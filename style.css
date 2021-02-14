@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+}
+
+h3 {
+  width: 100%;
+  text-align: center;
+}
+
+.todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 10px;
+  width: 100%;
+  font-size: 1.5em;
+}
+
+.todo__close {
+  margin-left: 20px;
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.todo__close span{
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  width: 25px;
+  height: 2px;
+  background-color: brown;
+}
+
+.todo__close :nth-child(1){
+  transform: translate(50%, 50%) rotate(45deg);
+}
+
+.todo__close :nth-child(2){
+  transform: translate(50%, 50%) rotate(-45deg);
+}
