@@ -1,9 +1,10 @@
 let onLoad = () => {
-  const body = document.querySelector("body");
+  const body      = document.querySelector("body");
   const inputText = document.getElementById("input-text");
-  const inputAdd = document.getElementById("input-btn");
+  const inputAdd  = document.getElementById("input-btn");
+  const inputSave = document.querySelector("#input-btn-save");
 
-  function createToDo() {
+  function createToDo(text) {
 
     const todo = document.createElement("div");
     todo.classList.add("todo");
@@ -16,6 +17,9 @@ let onLoad = () => {
     const delBtn = document.querySelector(".todo__close");
 
     const todoTextVal = inputText.value;
+    if (text != ""){
+      todoTextVal = text;
+    }
     todoText.append(todoTextVal);
     
     try{
@@ -38,8 +42,34 @@ let onLoad = () => {
   }
 
   inputAdd.addEventListener('click', () => {
-    createToDo();
+    createToDo("");
     inputText.value = "";
+  });
+
+  function loadTodos() {
+    const data     = localStorage.getItem("todo__text");
+    const todoLoad = document.querySelector(".todo");
+    if (data) {
+      todoLoad.innerHTML = data;
+
+      const todoClose = document.createElement("div");
+      todoClose.classList.add("todo__close");
+      const todoCloseSpan1 = document.createElement("span");
+      const todoCloseSpan2 = document.createElement("span");
+
+      body.appendChild(todoLoad);
+      todoLoad.appendChild(todoClose);
+      todoClose.append(todoCloseSpan1, todoCloseSpan2);
+
+    }
+    console.log("af")
+  }
+
+  loadTodos();
+
+  inputSave.addEventListener("click", () => {
+    const saveData = document.querySelector(".todo__text");
+    localStorage.setItem("todo__text", saveData.innerHTML);
   });
 
   function deleteToDo(element) {
@@ -49,7 +79,7 @@ let onLoad = () => {
       event.stopPropagation();
     });
   }
-  createToDo();
+  createToDo("");
   
 }
 document.addEventListener("DOMContentLoaded", onLoad);
